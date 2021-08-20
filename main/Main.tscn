@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://main/Main.cs" type="Script" id=1]
+[ext_resource path="res://assets/backgrounds/BlueNebula7.png" type="Texture" id=2]
+[ext_resource path="res://levels/Level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://title/Title.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/music/menu.wav" type="AudioStream" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/pixelate
+
+This shader is under CC0 license. Feel free to use, improve and 
+change this shader according to your needs and consider sharing 
+the modified result to godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+uniform int amount = 150;
+
+void fragment()
+{
+	vec2 grid_uv = round(UV * float(amount)) / float(amount);
+	
+	vec4 text = texture(TEXTURE, grid_uv);
+	
+	COLOR = text;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/amount = 150
+
+[node name="Main" type="Node2D"]
+position = Vector2( -1.12247, 1.12245 )
+script = ExtResource( 1 )
+
+[node name="BackgroundCanvas" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BackgroundCanvas"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BackgroundCanvas/ParallaxBackground"]
+position = Vector2( 0, 8 )
+motion_mirroring = Vector2( 0, 1024 )
+
+[node name="Space" type="Sprite" parent="BackgroundCanvas/ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.75, 0.75, 0.75, 1 )
+material = SubResource( 2 )
+position = Vector2( 223.091, 507.739 )
+scale = Vector2( 0.759217, 1.00027 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 244, 1, 592, 1024 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 225.122, 398.878 )
+current = true
+
+[node name="Level" parent="." instance=ExtResource( 3 )]
+
+[node name="Gameplay" parent="Level" index="0"]
+visible = false
+
+[node name="Title" parent="." instance=ExtResource( 4 )]
+
+[node name="TitleContainer" parent="Title/Control" index="0"]
+margin_top = 224.0
+margin_right = 408.0
+margin_bottom = 288.0
+
+[node name="Label" parent="Title/Control/TitleContainer" index="0"]
+margin_right = 448.0
+
+[node name="MarginContainer" parent="Title/Control" index="1"]
+margin_top = 384.0
+margin_bottom = 416.0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="Title/Control/PlayButton" to="." method="_OnPlayButtonPressed"]
+
+[editable path="Level"]
+[editable path="Title"]

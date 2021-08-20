@@ -1,0 +1,188 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/GravityBold8.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://title/Title.cs" type="Script" id=2]
+[ext_resource path="res://assets/SpaceShooterAssetPack_IU.png" type="Texture" id=3]
+[ext_resource path="res://assets/SpaceShooterAssetPack_Ships.png" type="Texture" id=4]
+[ext_resource path="res://assets/music/menu.wav" type="AudioStream" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 3
+outline_color = Color( 0.376471, 0.847059, 1, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 15
+outline_size = 2
+outline_color = Color( 0.376471, 0.847059, 1, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 162, 42, 12, 13 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 186, 43, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 174, 42, 12, 13 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 125, 42, 12, 13 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 149, 42, 12, 13 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 137, 42, 12, 13 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 125, 0, 12, 13 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 137, 0, 12, 13 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 137, 0, 12, 13 )
+
+[node name="Title" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleContainer" type="MarginContainer" parent="Control"]
+anchor_right = 1.0
+margin_top = 216.0
+margin_right = 440.0
+margin_bottom = 280.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/TitleContainer"]
+margin_top = 16.0
+margin_right = 480.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0.137255, 0.388235, 1 )
+text = "Space Fighters"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+margin_top = 416.0
+margin_right = 480.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/MarginContainer"]
+margin_top = 8.0
+margin_right = 480.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0.0313726, 0.372549, 1 )
+text = "Choose Your Ship:"
+align = 1
+
+[node name="ShipChooser" type="HBoxContainer" parent="Control"]
+margin_top = 448.0
+margin_right = 480.0
+margin_bottom = 544.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 15
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureButton" parent="Control/ShipChooser"]
+margin_left = 169.0
+margin_right = 193.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 24, 24 )
+rect_pivot_offset = Vector2( 6, 6 )
+size_flags_horizontal = 0
+texture_normal = SubResource( 3 )
+texture_pressed = SubResource( 4 )
+texture_hover = SubResource( 5 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shipbox" type="TextureRect" parent="Control/ShipChooser"]
+margin_left = 208.0
+margin_right = 272.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 0
+texture = SubResource( 6 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedShip" type="Sprite" parent="Control/ShipChooser/Shipbox"]
+position = Vector2( 32, 48 )
+scale = Vector2( 4.5, 4.5 )
+texture = ExtResource( 4 )
+vframes = 5
+region_enabled = true
+region_rect = Rect2( 8, 0, 8, 40 )
+
+[node name="Right" type="TextureButton" parent="Control/ShipChooser"]
+margin_left = 287.0
+margin_right = 311.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_horizontal = 0
+texture_normal = SubResource( 7 )
+texture_pressed = SubResource( 8 )
+texture_hover = SubResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="PlayButton" type="TextureButton" parent="Control"]
+margin_left = 200.0
+margin_top = 664.0
+margin_right = 280.0
+margin_bottom = 744.0
+texture_normal = SubResource( 10 )
+texture_pressed = SubResource( 11 )
+texture_hover = SubResource( 12 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="Control/ShipChooser/Left" to="." method="_OnLeftPressed"]
+[connection signal="pressed" from="Control/ShipChooser/Right" to="." method="_OnRightPressed"]

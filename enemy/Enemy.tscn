@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/SpaceShooterAssetPack_Ships.png" type="Texture" id=1]
+[ext_resource path="res://enemy/EnemyPaths.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemy/Enemy.cs" type="Script" id=3]
+[ext_resource path="res://bullet/Explosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://bullet/EnemyBullet.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 18, 18 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "hover"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 2.5, 3.8, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -2, 2 ), Vector2( 0, -4 ), Vector2( 2, 2 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "hurt"
+length = 0.2
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Enemy" type="Area2D" groups=[
+"enemies",
+]]
+position = Vector2( -48, -1 )
+script = ExtResource( 3 )
+Shield = 150
+Bullet = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
+scale = Vector2( 6, -6 )
+texture = ExtResource( 1 )
+hframes = 6
+frame = 4
+region_enabled = true
+region_rect = Rect2( 32, 25, 48, 6 )
+
+[node name="EnemyPaths" parent="." instance=ExtResource( 2 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hover = SubResource( 2 )
+anims/hurt = SubResource( 3 )
+
+[node name="Explosion" parent="." instance=ExtResource( 4 )]
+visible = false
+frame = 0
+
+[node name="GunTimer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_OnAnimationFinished"]
+[connection signal="timeout" from="GunTimer" to="." method="_OnGunTimerTimeout"]
+
+[editable path="Explosion"]

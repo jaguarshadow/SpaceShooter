@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LASRGun_Classic Blaster A Fire_03.wav-46d63ff85738cca4f96fcd7611384c09.sample"
+
+[deps]
+
+source_file="res://assets/sounds/LASRGun_Classic Blaster A Fire_03.wav"
+dest_files=[ "res://.import/LASRGun_Classic Blaster A Fire_03.wav-46d63ff85738cca4f96fcd7611384c09.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/SpaceShooterAssetPack_BackGrounds.png-40c27d371c0774439f2d44bc4d1df4de.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/SpaceShooterAssetPack_BackGrounds.png"
+dest_files=[ "res://.import/SpaceShooterAssetPack_BackGrounds.png-40c27d371c0774439f2d44bc4d1df4de.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
