@@ -1,0 +1,11 @@
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\bin\ExportDebug\SpaceShooter.dll
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\bin\ExportDebug\SpaceShooter.pdb
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\ExportDebug\SpaceShooter.csproj.AssemblyReference.cache
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\ExportDebug\SpaceShooter.AssemblyInfoInputs.cache
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\ExportDebug\SpaceShooter.AssemblyInfo.cs
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\ExportDebug\SpaceShooter.csproj.CoreCompileInputs.cache
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\ExportDebug\SpaceShooter.dll
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\ExportDebug\SpaceShooter.pdb
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\bin\ExportDebug\StubProj.dll
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\bin\ExportDebug\StubProj.pdb
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\ExportDebug\SpaceShooter.csproj.CopyComplete

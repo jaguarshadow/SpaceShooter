@@ -33,7 +33,11 @@
         "frameworks": {
           "net472": {
             "targetAlias": "net472",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\starb\\Documents\\Godot Projects\\StubProj\\StubProj.csproj": {
+                "projectPath": "C:\\Users\\starb\\Documents\\Godot Projects\\StubProj\\StubProj.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -47,6 +51,21 @@
           "targetAlias": "net472",
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\starb\\Documents\\Godot Projects\\StubProj\\StubProj.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\starb\\Documents\\Godot Projects\\StubProj\\StubProj.csproj",
+        "projectName": "StubProj",
+        "projectPath": "C:\\Users\\starb\\Documents\\Godot Projects\\StubProj\\StubProj.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }

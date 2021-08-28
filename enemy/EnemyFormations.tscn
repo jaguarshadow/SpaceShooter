@@ -1,0 +1,126 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/target.png" type="Texture" id=1]
+
+[sub_resource type="TileSet" id=1]
+0/name = "target.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="EnemyFormations" type="Control"]
+margin_right = 448.0
+margin_bottom = 640.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level1" type="Node" parent="."]
+
+[node name="Formation1-1" type="TileMap" parent="Level1"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196611, 0, 0, 196613, 0, 0, 327681, 0, 0, 327683, 0, 0, 327685, 0, 0 )
+
+[node name="Formation1-2" type="TileMap" parent="Level1"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196613, 0, 0, 262146, 0, 0, 262148, 0, 0, 327683, 0, 0, 393219, 0, 0 )
+
+[node name="Formation1-3" type="TileMap" parent="Level1"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196608, 0, 0, 196610, 0, 0, 196612, 0, 0, 327682, 0, 0, 327684, 0, 0, 327686, 0, 0 )
+
+[node name="Level2" type="Node" parent="."]
+
+[node name="Formation2-1" type="TileMap" parent="Level2"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196610, 0, 0, 196612, 0, 0, 262144, 0, 0, 262145, 0, 0, 262147, 0, 0, 262149, 0, 0, 262150, 0, 0, 327682, 0, 0, 327684, 0, 0 )
+
+[node name="Formation2-2" type="TileMap" parent="Level2"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196611, 0, 0, 196613, 0, 0, 262145, 0, 0, 262147, 0, 0, 262149, 0, 0, 327681, 0, 0, 327683, 0, 0, 327685, 0, 0 )
+
+[node name="Formation2-3" type="TileMap" parent="Level2"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196608, 0, 0, 196610, 0, 0, 196612, 0, 0, 196614, 0, 0, 327681, 0, 0, 327683, 0, 0, 327685, 0, 0, 458754, 0, 0, 458756, 0, 0 )
+
+[node name="Level3" type="Node" parent="."]
+
+[node name="Formation3-1" type="TileMap" parent="Level3"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196613, 0, 0, 262144, 0, 0, 262146, 0, 0, 262148, 0, 0, 262150, 0, 0, 327681, 0, 0, 327683, 0, 0, 327685, 0, 0, 393218, 0, 0, 393220, 0, 0, 458755, 0, 0 )
+
+[node name="Formation3-2" type="TileMap" parent="Level3"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196610, 0, 0, 262145, 0, 0, 262147, 0, 0, 262148, 0, 0, 327682, 0, 0, 327684, 0, 0, 393218, 0, 0, 393219, 0, 0, 393221, 0, 0, 458756, 0, 0, 458757, 0, 0 )
+
+[node name="Formation3-3" type="TileMap" parent="Level3"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196610, 0, 0, 196612, 0, 0, 262145, 0, 0, 262147, 0, 0, 262149, 0, 0, 327682, 0, 0, 327684, 0, 0, 393217, 0, 0, 393219, 0, 0, 393221, 0, 0 )
+
+[node name="Level4" type="Node" parent="."]
+
+[node name="Formation4-1" type="TileMap" parent="Level4"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196611, 0, 0, 196613, 0, 0, 262146, 0, 0, 262148, 0, 0, 327681, 0, 0, 327683, 0, 0, 327685, 0, 0, 393218, 0, 0, 393220, 0, 0, 458753, 0, 0, 458755, 0, 0, 458757, 0, 0, 524290, 0, 0, 524292, 0, 0 )
+
+[node name="Formation4-2" type="TileMap" parent="Level4"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196611, 0, 0, 196613, 0, 0, 262146, 0, 0, 262148, 0, 0, 327680, 0, 0, 327683, 0, 0, 327686, 0, 0, 393216, 0, 0, 393219, 0, 0, 393222, 0, 0, 458754, 0, 0, 458756, 0, 0, 524289, 0, 0, 524293, 0, 0 )
+
+[node name="Formation4-3" type="TileMap" parent="Level4"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 262145, 0, 0, 262149, 0, 0, 327681, 0, 0, 327683, 0, 0, 327685, 0, 0, 393217, 0, 0, 393221, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 524290, 0, 0, 524292, 0, 0 )
+
+[node name="Level5" type="Node" parent="."]
+
+[node name="Formation5-1" type="TileMap" parent="Level5"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 393218, 0, 0, 393220, 0, 0 )
+
+[node name="Formation5-2" type="TileMap" parent="Level5"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196610, 0, 0, 196612, 0, 0, 196613, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 458755, 0, 0 )
+
+[node name="Formation5-3" type="TileMap" parent="Level5"]
+visible = false
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 196608, 0, 0, 196610, 0, 0, 196612, 0, 0, 196614, 0, 0, 262145, 0, 0, 262147, 0, 0, 262149, 0, 0, 327680, 0, 0, 327682, 0, 0, 327684, 0, 0, 327686, 0, 0, 393217, 0, 0, 393219, 0, 0, 393221, 0, 0, 458752, 0, 0, 458754, 0, 0, 458756, 0, 0, 458758, 0, 0 )

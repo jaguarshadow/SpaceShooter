@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/SpaceShooterAssetPack_Ships.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.cs" type="Script" id=2]
 [ext_resource path="res://bullet/Bullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/SpaceShooterAssetPack_Miscellaneous.png" type="Texture" id=4]
+[ext_resource path="res://bullet/Explosion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sounds/EXPLDsgn_Explosion Impact_14.wav" type="AudioStream" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24, 24 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=5]
 resource_name = "hover"
 length = 5.0
 loop = true
@@ -24,13 +27,69 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -2, 2 ), Vector2( 0, -4 ), Vector2( 2, 2 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "hurt"
+length = 0.2
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 2.5, 3.8, 5.1, 6.4, 7.6, 8.7, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -2, 2 ), Vector2( 0, -4 ), Vector2( 2, 2 ), Vector2( 0, 0 ), Vector2( 2, 2 ), Vector2( 0, -4 ), Vector2( -2, 2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D/Sprite/Shield:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D/Sprite/Shield:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4, 9.6, 9.7, 9.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 3, 1, 0 ]
+}
+
 [node name="Player" type="Area2D"]
 script = ExtResource( 2 )
-fireRate = 0.25
 Bullet = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+position = Vector2( -0.833333, 0.833333 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]
 scale = Vector2( 6, 6 )
@@ -40,15 +99,35 @@ frame = 1
 region_enabled = true
 region_rect = Rect2( -1, 0, 26, 8 )
 
+[node name="Shield" type="Sprite" parent="CollisionShape2D/Sprite"]
+visible = false
+texture = ExtResource( 4 )
+hframes = 4
+region_enabled = true
+region_rect = Rect2( 40, 32, 64, 16 )
+
 [node name="Gun" type="Position2D" parent="."]
 position = Vector2( 0, -16 )
 
 [node name="Timer" type="Timer" parent="Gun"]
 one_shot = true
 
-[node name="Sound" type="AudioStreamPlayer" parent="Gun"]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hover = SubResource( 2 )
+anims/hover = SubResource( 5 )
+anims/hurt = SubResource( 3 )
+anims/shield = SubResource( 6 )
+
+[node name="Explosion" parent="." instance=ExtResource( 5 )]
+visible = false
+hframes = 4
+frame = 3
+region_rect = Rect2( 72, 48, 32, 8 )
+
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0
 
 [connection signal="timeout" from="Gun/Timer" to="." method="_OnGunTimerTimeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_OnAnimationFinished"]
+
+[editable path="Explosion"]

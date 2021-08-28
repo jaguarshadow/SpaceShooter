@@ -6,3 +6,6 @@ C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\bin\Debug\SpaceS
 C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\bin\Debug\SpaceShooter.pdb
 C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\Debug\SpaceShooter.dll
 C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\Debug\SpaceShooter.pdb
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\bin\Debug\StubProj.dll
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\bin\Debug\StubProj.pdb
+C:\Users\starb\Documents\Godot Projects\SpaceShooter\.mono\temp\obj\Debug\SpaceShooter.csproj.CopyComplete

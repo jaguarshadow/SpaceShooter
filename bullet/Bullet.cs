@@ -8,7 +8,7 @@ public class Bullet : Area2D
     private Vector2 Velocity;
 
     [Export]
-    private int speed = 800;
+    private readonly int speed = 800;
 
     public string Target { get; set; }
 
@@ -18,22 +18,22 @@ public class Bullet : Area2D
 
     }
 
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(float delta)
+    {
+        Position += Velocity * delta;
+        if (GlobalPosition.y > GetViewportRect().End.y - 5 || GlobalPosition.y < GetViewportRect().Position.y - 5) QueueFree();
+    }
+
     public void Start(Vector2 pos, Vector2 dir)
     {
         GlobalPosition = pos;
         Velocity = new Vector2(speed, 0).Rotated(dir.Angle());
     }
 
-
     public void PlaySound()
     {
         ((AudioStreamPlayer)GetNode("Sound")).Play();
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
-    {
-        Position += Velocity * delta;
     }
 
     public void _OnBulletAreaEntered(Area2D body)
@@ -49,20 +49,26 @@ public class Bullet : Area2D
             }
         }
 
-        if (Target == "enemy" && body.IsInGroup("player"))
+        if (Target == "player" && body.IsInGroup("player"))
         {
-            ((AnimationPlayer)body.GetNode("AnimationPlayer")).Play("hurt");
-            ((Enemy)body).Shield -= 50;
             QueueFree();
-            if (((Enemy)body).Shield <= 0)
+            if (((Player)body).State == Player.STATES.ALIVE)
             {
-                ((Enemy)body).Explode();
+                ((Player)body).Health -= 20;
+                ((Main)GetNode("/root/Main")).ChangeHealth(((Player)body).Health);
+                ((AnimationPlayer)body.GetNode("AnimationPlayer")).Play("hurt");
+                GD.Print(((Player)body).Health);
+                if (((Player)body).Health <= 0)
+                {
+                    ((Player)body).Explode();
+                }
             }
         }
     }
 
-    public void _OnBulletScreenExit()
+    public void _OnScreenExit()
     {
+        GD.Print("Freeing ", Name);
         QueueFree();
     }
 }

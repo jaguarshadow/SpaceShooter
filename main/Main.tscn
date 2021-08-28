@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://main/Main.cs" type="Script" id=1]
 [ext_resource path="res://assets/backgrounds/BlueNebula7.png" type="Texture" id=2]
 [ext_resource path="res://levels/Level.tscn" type="PackedScene" id=3]
 [ext_resource path="res://title/Title.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/music/menu.wav" type="AudioStream" id=5]
+[ext_resource path="res://enemy/EnemyFormations.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/GravityBold8.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/SpaceShooterAssetPack_Miscellaneous.png" type="Texture" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "/*
@@ -32,6 +35,16 @@ void fragment()
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/amount = 150
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 7 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 0, 8, 8 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 0, 0.494118, 1 )
 
 [node name="Main" type="Node2D"]
 position = Vector2( -1.12247, 1.12245 )
@@ -63,6 +76,77 @@ current = true
 [node name="Gameplay" parent="Level" index="0"]
 visible = false
 
+[node name="Player" parent="Level/Gameplay/PlayerNode" index="0" groups=[
+"player",
+]]
+FireRate = 0.25
+
+[node name="EnemyFormations" parent="Level/Gameplay" index="1" instance=ExtResource( 6 )]
+
+[node name="UI" type="Control" parent="Level/Gameplay" index="2"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainerLeft" type="MarginContainer" parent="Level/Gameplay/UI"]
+margin_left = 8.0
+margin_right = 192.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="Level/Gameplay/UI/MarginContainerLeft"]
+margin_top = 12.0
+margin_right = 184.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 3 )
+text = "Score: "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainerRight" type="MarginContainer" parent="Level/Gameplay/UI"]
+margin_left = 256.0
+margin_top = 8.0
+margin_right = 440.0
+margin_bottom = 28.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthContainer" type="HBoxContainer" parent="Level/Gameplay/UI/MarginContainerRight"]
+margin_right = 184.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartIcon" type="TextureRect" parent="Level/Gameplay/UI/MarginContainerRight/HealthContainer"]
+margin_right = 30.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 20 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="HealthBar" type="ProgressBar" parent="Level/Gameplay/UI/MarginContainerRight/HealthContainer"]
+margin_left = 34.0
+margin_right = 184.0
+margin_bottom = 20.0
+input_pass_on_modal_close_click = false
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_styles/fg = SubResource( 5 )
+step = 20.0
+value = 100.0
+percent_visible = false
+
 [node name="Title" parent="." instance=ExtResource( 4 )]
 
 [node name="TitleContainer" parent="Title/Control" index="0"]
@@ -75,11 +159,34 @@ margin_right = 448.0
 
 [node name="MarginContainer" parent="Title/Control" index="1"]
 margin_top = 384.0
+margin_right = 448.0
 margin_bottom = 416.0
+
+[node name="Label" parent="Title/Control/MarginContainer" index="0"]
+margin_right = 448.0
+
+[node name="ShipChooser" parent="Title/Control" index="2"]
+margin_right = 448.0
+
+[node name="Left" parent="Title/Control/ShipChooser" index="0"]
+margin_left = 153.0
+margin_right = 177.0
+
+[node name="Shipbox" parent="Title/Control/ShipChooser" index="1"]
+margin_left = 192.0
+margin_right = 256.0
+
+[node name="Right" parent="Title/Control/ShipChooser" index="2"]
+margin_left = 271.0
+margin_right = 295.0
+
+[node name="PlayButton" parent="Title/Control" index="3"]
+margin_left = 184.0
+margin_right = 264.0
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -15.0
+volume_db = -20.0
 autoplay = true
 
 [connection signal="pressed" from="Title/Control/PlayButton" to="." method="_OnPlayButtonPressed"]

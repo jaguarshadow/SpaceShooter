@@ -4,7 +4,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "explode"
-length = 0.3
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -12,10 +12,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2 ]
+"values": [ 0, 1, 2, 3 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -24,17 +24,16 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ true, false ]
 }
 
 [node name="Explosion" type="Sprite"]
 scale = Vector2( 6, 6 )
 texture = ExtResource( 1 )
 hframes = 3
-frame = 2
 region_enabled = true
 region_rect = Rect2( 80, 48, 24, 8 )
 

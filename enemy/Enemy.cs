@@ -8,7 +8,7 @@ public class Enemy : Area2D
     private PathFollow2D follow;
     // private variable for shooting target 
     private bool onPath;
-    private RandomNumberGenerator rng = new RandomNumberGenerator();
+    private readonly RandomNumberGenerator rng = new RandomNumberGenerator();
 
     public Vector2 Destination { get; set; }
 
@@ -25,13 +25,13 @@ public class Enemy : Area2D
     public delegate void EnemyShoot(PackedScene bullet, Vector2 pos);
 
     [Signal]
-    public delegate void EnemyKilled();
+    public delegate void EnemyKilled(Enemy e);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         rng.Randomize();
-        ((Timer)GetNode("GunTimer")).WaitTime = rng.RandiRange(3, 15);
+        ((Timer)GetNode("GunTimer")).WaitTime = rng.RandiRange(1, 3);
         ((Timer)GetNode("GunTimer")).Start();
         Connect(nameof(EnemyKilled), GetNode("/root/Main"), "_OnEnemyKilled");
         Connect(nameof(EnemyShoot), GetNode("/root/Main"), "_OnEnemyShoot");
@@ -74,15 +74,22 @@ public class Enemy : Area2D
 
     public void _OnAnimationFinished(string anim)
     {
-        if (anim != "explode") return;
-        QueueFree();
-        EmitSignal(nameof(EnemyKilled));
+        switch (anim)
+        {
+            case "hurt":
+                ((AnimationPlayer)GetNode("AnimationPlayer")).Play("hover");
+                break;
+            case "explode":
+                EmitSignal(nameof(EnemyKilled), this);
+                QueueFree();
+                break;
+        }
     }
 
     public void _OnGunTimerTimeout()
     {
         EmitSignal(nameof(EnemyShoot), Bullet, GlobalPosition);
-        ((Timer)GetNode("GunTimer")).WaitTime = rng.RandiRange(3, 15);
+        ((Timer)GetNode("GunTimer")).WaitTime = rng.RandiRange(2, 10);
         ((Timer)GetNode("GunTimer")).Start();
     }
 }

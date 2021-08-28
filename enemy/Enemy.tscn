@@ -52,13 +52,13 @@ Shield = 150
 Bullet = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.16667, 1.16667 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]
 scale = Vector2( 6, -6 )
 texture = ExtResource( 1 )
 hframes = 6
-frame = 4
 region_enabled = true
 region_rect = Rect2( 32, 25, 48, 6 )
 
@@ -70,10 +70,12 @@ anims/hurt = SubResource( 3 )
 
 [node name="Explosion" parent="." instance=ExtResource( 4 )]
 visible = false
-frame = 0
+hframes = 4
+region_rect = Rect2( 72, 48, 32, 8 )
 
 [node name="GunTimer" type="Timer" parent="."]
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_OnAnimationFinished"]
 [connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_OnAnimationFinished"]
 [connection signal="timeout" from="GunTimer" to="." method="_OnGunTimerTimeout"]
 

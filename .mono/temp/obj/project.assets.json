@@ -1,11 +1,29 @@
 {
   "version": 3,
   "targets": {
-    ".NETFramework,Version=v4.7.2": {}
+    ".NETFramework,Version=v4.7.2": {
+      "StubProj/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/StubProj.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StubProj.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "StubProj/1.0.0": {
+      "type": "project",
+      "path": "../StubProj/StubProj.csproj",
+      "msbuildProject": "../StubProj/StubProj.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETFramework,Version=v4.7.2": []
+    ".NETFramework,Version=v4.7.2": [
+      "StubProj >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\starb\\.nuget\\packages\\": {},
@@ -15,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\USERS\\STARB\\DOCUMENTS\\GODOT PROJECTS\\SPACESHOOTER\\SpaceShooter.csproj",
+      "projectUniqueName": "C:\\Users\\starb\\Documents\\Godot Projects\\SpaceShooter\\SpaceShooter.csproj",
       "projectName": "SpaceShooter",
-      "projectPath": "C:\\USERS\\STARB\\DOCUMENTS\\GODOT PROJECTS\\SPACESHOOTER\\SpaceShooter.csproj",
+      "projectPath": "C:\\Users\\starb\\Documents\\Godot Projects\\SpaceShooter\\SpaceShooter.csproj",
       "packagesPath": "C:\\Users\\starb\\.nuget\\packages\\",
-      "outputPath": "C:\\USERS\\STARB\\DOCUMENTS\\GODOT PROJECTS\\SPACESHOOTER\\.mono\\temp\\obj\\",
+      "outputPath": "C:\\Users\\starb\\Documents\\Godot Projects\\SpaceShooter\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -41,7 +59,11 @@
       "frameworks": {
         "net472": {
           "targetAlias": "net472",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\starb\\Documents\\Godot Projects\\StubProj\\StubProj.csproj": {
+              "projectPath": "C:\\Users\\starb\\Documents\\Godot Projects\\StubProj\\StubProj.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
